@@ -1,0 +1,30 @@
+/* Header.css */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f998;
+    color: white;
+  }
+  
+.profile-picture {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; /* Creates a circular shape */
+    object-fit: cover;
+}
+  
+.nav-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+  
+.nav-list li {
+    font-size: 18px;
+}
+  
+  /* Add more styling to customize the design */
+  
