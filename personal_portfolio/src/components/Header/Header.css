@@ -1,30 +1,89 @@
-/* Header.css */
+/* Header */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #f9f9f998;
-    color: white;
-  }
-  
+    background-color: #aeaeae79;
+}
+
+
+/* Profile Picture */
 .profile-picture {
     width: 80px;
     height: 80px;
     border-radius: 50%; /* Creates a circular shape */
     object-fit: cover;
 }
-  
+
+.profile-container a:hover img {
+    /* Add your hover styles here */
+    transform: scale(1.1); /* Example: scale up on hover */
+    transition: opacity 0.3s, transform 0.3s; /* Smooth transitions */
+}
+
+
+/* Navigation Links Div */
+.navigation-container {
+    text-align: center; /* Center-align the contents */
+    width: 50%;
+    margin: 0 auto; /* Center the container horizontally */
+}
+
 .nav-list {
     list-style: none;
-    padding: 0;
     display: flex;
-    gap: 20px;
+    margin: 0;
+    padding: 0;
+    justify-content: center; /* Center the list items horizontally */
+    align-items: center;
+    height: 100%;
 }
-  
+
 .nav-list li {
-    font-size: 18px;
+    /* Add equal spacing between items */
+    margin-left: 20px; /* Adjust as needed for your desired spacing */
+    margin-right: 20px; /* Adjust as needed for your desired spacing */
+    font-size: larger;
+    transition: font-size 0.3s; /* Add a transition for smooth scaling */
 }
-  
-  /* Add more styling to customize the design */
-  
+
+/* Style for the first and last items, remove margins */
+.nav-list li:first-child {
+    margin-left: 0; /* Remove left margin for the first item */
+}
+
+.nav-list li:last-child {
+    margin-right: 0; /* Remove right margin for the last item */
+}
+
+/* Style for button appearance on hover */
+.nav-list li:hover {
+    cursor: pointer; /* Change cursor to pointer on hover */
+    border-radius: 5px; /* Add border-radius to make edges more circular */
+    font-size: x-large; /* Increase font size on hover */
+}
+
+.nav-list a {
+    text-decoration: none; /* Remove underlines from links */
+    color: #333; /* Set text color */
+    font-weight: bold; /* Make the text bold */
+    font-family: 'Poppins', sans-serif; 
+}
+
+/* Socials */
+.social-container {
+    display: flex;
+    gap: 10px; /* Add space between icons */
+}
+
+.social-container a {
+    text-decoration: none;
+    color: #333;
+    font-size: 20px;
+}
+
+/* Special color on hover */
+.social-container a:hover {
+    color: #0077B5; /* Change color to LinkedIn blue on hover */
+}
