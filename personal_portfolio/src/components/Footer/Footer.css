@@ -1,44 +1,55 @@
 /* Footer.css */
 
 .footer {
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .footer-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Create a 3-column grid layout */
-    gap: 5px; /* Adjust the spacing between columns as needed */
-    align-items: center; /* Vertically center the content */
-  }
-  
-  .footer-data {
-    text-align: center; /* Align text within each data section */
-  }
-  
-  .footer-title {
-    font-size: 20px; /* Adjust the title font size as needed */
-  }
-  
-  .footer-text {
-    font-size: 14px; /* Adjust the text font size as needed */
-    list-style: none;
-    align-items:start;
-    padding: 0;
-    display: block;
-  }
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  padding: 64px 0 48px;
+  text-align: center;
+}
 
-  .footer-link {
-    color: white;
-    text-decoration: none;
-    display: block; /* Display list items as block elements */
-    text-align: left; /* Align text to the left */
-    padding-left: 10px; /* Add padding to align with the footer-title */
-  }
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Create three equal columns */
+  gap: 15px;
+  margin: 0 400px;
+  justify-content: center;
+}
   
-  .footer-link:hover {
-    color: #007bff; /* Change to your preferred hover color */
-  }
+.footer-data {
+  height: 100%;
+  width: fit-content;
+  margin: 0 auto;
+}
+  
+.footer-title {
+  font-size: 20px;
+  margin: 0 0 16px 0;
+  text-align: left;
+}
+
+.footer-text {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  color: #aeaeae79;
+  text-decoration: none;
+}
+
+.footer-link {
+  text-decoration: none;
+  color: #aeaeae79;
+}
+
+.socials {
+  font-size: larger;
+  color: #aeaeae79;
+  margin-right: 10px;
+}
+  
+
   

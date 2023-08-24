@@ -1,89 +1,63 @@
 /* Header */
 .header {
-    display: flex;
-    justify-content: space-between;
+    height: 64px;
+    width: 100%;
     align-items: center;
-    padding: 20px;
     background-color: #aeaeae79;
 }
 
+.nav-bar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Create three equal columns */
+    gap: 15px;
+    margin: 0 400px;
+    height: 100%;
+    align-items: center;
+}
 
-/* Profile Picture */
+.nav-logo {
+    display: flex;
+}
+
 .profile-picture {
-    width: 80px;
-    height: 80px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%; /* Creates a circular shape */
     object-fit: cover;
+    border: 2px solid #ccc; /* Add a border around the image */
+
 }
 
-.profile-container a:hover img {
-    /* Add your hover styles here */
-    transform: scale(1.1); /* Example: scale up on hover */
-    transition: opacity 0.3s, transform 0.3s; /* Smooth transitions */
-}
-
-
-/* Navigation Links Div */
-.navigation-container {
-    text-align: center; /* Center-align the contents */
-    width: 50%;
-    margin: 0 auto; /* Center the container horizontally */
+.profile-picture:hover {
+    transform: scale(1.1);
 }
 
 .nav-list {
+    display: flex;
     list-style: none;
-    display: flex;
-    margin: 0;
     padding: 0;
-    justify-content: center; /* Center the list items horizontally */
-    align-items: center;
-    height: 100%;
+    margin: 0;
 }
 
-.nav-list li {
-    /* Add equal spacing between items */
-    margin-left: 20px; /* Adjust as needed for your desired spacing */
-    margin-right: 20px; /* Adjust as needed for your desired spacing */
-    font-size: larger;
-    transition: font-size 0.3s; /* Add a transition for smooth scaling */
+.nav-item {
+    margin: 0 0 0 32px;
+    text-decoration: none;
+    border-bottom: 2px solid transparent; /* You can adjust the thickness here */
+    transition: border-bottom 0.3s ease; /* Add a smooth transition effect */
 }
 
-/* Style for the first and last items, remove margins */
-.nav-list li:first-child {
-    margin-left: 0; /* Remove left margin for the first item */
-}
 
-.nav-list li:last-child {
-    margin-right: 0; /* Remove right margin for the last item */
-}
-
-/* Style for button appearance on hover */
-.nav-list li:hover {
-    cursor: pointer; /* Change cursor to pointer on hover */
-    border-radius: 5px; /* Add border-radius to make edges more circular */
-    font-size: x-large; /* Increase font size on hover */
-}
-
-.nav-list a {
-    text-decoration: none; /* Remove underlines from links */
-    color: #333; /* Set text color */
-    font-weight: bold; /* Make the text bold */
-    font-family: 'Poppins', sans-serif; 
-}
-
-/* Socials */
-.social-container {
-    display: flex;
-    gap: 10px; /* Add space between icons */
-}
-
-.social-container a {
+.nav-item a {
+    font-size: 20px;
     text-decoration: none;
     color: #333;
-    font-size: 20px;
+    font-weight: bold;
 }
 
-/* Special color on hover */
-.social-container a:hover {
-    color: #0077B5; /* Change color to LinkedIn blue on hover */
+.nav-item:hover {
+    transform: scale(1.1); /* Zoom effect as before */
+    border-bottom: 4px solid #333; /* Adjust thickness and color as needed */
 }
+
+
+
