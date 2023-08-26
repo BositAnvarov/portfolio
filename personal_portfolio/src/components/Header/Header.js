@@ -4,7 +4,7 @@ import myProfilePic from './Images/profile_pic.jpg';
 
 function Header() {
     return (
-        <header className="header">
+        <header className='header'>
             <nav className="nav-bar">
                 <div>
                     <a href="/#top" className="nav-logo">
@@ -21,7 +21,6 @@ function Header() {
                         <li className="nav-item"><a href="#home">Home</a></li>
                         <li className="nav-item"><a href="#about">About</a></li>
                         <li className="nav-item"><a href="#skills">Skills</a></li>
-                        <li className="nav-item"><a href="#achievements">Achievements</a></li>
                         <li className="nav-item"><a href="#projects">Projects</a></li>
                         <li className="nav-item"><a href="#contact">Contact</a></li>
                     </ul>

@@ -1,0 +1,53 @@
+.home {
+    background-color: rgba(174, 174, 174, 1);
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    z-index: 98;
+}
+
+.home-container {
+    display: grid;
+    grid-template-rows: 1.7fr, 1fr; 
+    margin: 0 auto;
+    height: 640px;
+    row-gap: 0;
+    max-width: 850px;
+}
+
+h1 {
+    margin: 0;
+}
+
+.home-title {
+    align-self: self-end;
+    text-transform: uppercase;
+    font-size: 3rem;
+    font-weight: bold; /* Optional: make the text bold */
+    color: #333; /* Text color */
+    letter-spacing: 2px; /* Adjust letter spacing as needed */
+}
+
+.home-title span {
+    text-shadow: 2px 2px 3px rgba(3, 3, 3, 0.5); /* Add a shadow to the <span> part */
+}
+
+.home-scroll {
+    align-self: self-end;   
+}
+
+.home-scroll-link {
+    text-decoration: none;
+    color: #333;
+}
+
+.home-img {
+    position: absolute;
+    opacity: 1;
+    width: 375px;
+    right: 28%;
+    bottom: 15px;
+    border: 2px solid rgba(174, 174, 174, 1); /* Border color is a shade of blue (#3498db) */
+    border-radius: 15px; /* Rounded corners for a modern look */
+    box-shadow: 0px 0px 10px #333; /* Adding a subtle shadow */
+}
