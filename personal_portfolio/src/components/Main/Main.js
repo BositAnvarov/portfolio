@@ -37,7 +37,10 @@ function Main() {
 
       {/* ABOUT */}
       <section className='about'>
-        
+        <div className='about-container'>
+          
+
+        </div>
       </section>
 
       {/* SKILLS */}
