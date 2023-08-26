@@ -38,8 +38,22 @@ function Main() {
       {/* ABOUT */}
       <section className='about'>
         <div className='about-container'>
+          <div class="about-content">
+            <h2>About Me</h2>
+            <p>
+              Welcome to my personal website! I'm passionate about [your interests or profession] and love to [briefly describe what you do or your interests].
+            </p>
+            <p>
+              [Add more information about yourself, such as your background, education, and experience. You can use multiple paragraphs or list items as needed.]
+            </p>
+            <p>
+              In my free time, I enjoy [mention your hobbies or activities]. Feel free to explore my website to learn more about me and my work.
+            </p>
+          </div>
           
-
+          <div class="about-image">
+            <img src="your-image.jpg" alt="Your Name" />
+          </div>
         </div>
       </section>
 

@@ -16,6 +16,7 @@
     justify-content: space-between;
     max-width: 850px;
     margin: 0 auto;
+    height: 100%;
 }
 
 .nav-logo {
@@ -25,6 +26,7 @@
     font-weight: bold;
     font-size: 20px;
 }
+
 
 .profile-picture:hover {
     transform: scale(1.1);
@@ -40,8 +42,7 @@
 .nav-item {
     margin: 0 0 0 32px;
     text-decoration: none;
-    border-bottom: 2px solid transparent; /* You can adjust the thickness here */
-    transition: border-bottom 1s ease; /* Add a smooth transition effect */
+    position: relative;
 }
 
 
@@ -54,7 +55,6 @@
 
 .nav-item:hover {
     transform: scale(1.1); /* Zoom effect as before */
-    border-bottom: 4px solid #333; /* Adjust thickness and color as needed */
 }
 
 
