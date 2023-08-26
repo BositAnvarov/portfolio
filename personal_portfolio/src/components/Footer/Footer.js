@@ -15,14 +15,13 @@ function Footer() {
             Copyright &copy; {new Date().getFullYear()}
           </p>
         </div>
-
+        
         <div className='footer-data'>
           <h2 className='footer-title'>EXPLORE</h2>
           <ul className='footer-text'>
             <li><a href="#home" className='footer-link'>Home</a></li>
             <li><a href="#about" className='footer-link'>About</a></li>
             <li><a href="#skills" className='footer-link'>Skills</a></li>
-            <li><a href="#achievements" className='footer-link'>Achievements</a></li>
             <li><a href="#projects" className='footer-link'>Projects</a></li>
             <li><a href="#contact" className='footer-link'>Contact</a></li>
           </ul>

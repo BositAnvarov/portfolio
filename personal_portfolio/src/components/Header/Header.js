@@ -1,18 +1,13 @@
 import React from "react";
 import './Header.css';
-import myProfilePic from './Images/profile_pic.jpg';
 
 function Header() {
     return (
         <header className='header'>
             <nav className="nav-bar">
                 <div>
-                    <a href="/#top" className="nav-logo">
-                        <img
-                            className="profile-picture"
-                            src={myProfilePic}
-                            alt="Bosit-Anvarov"
-                        />
+                    <a href="/#home" className="nav-logo">
+                        Abdulbosit Anvarov
                     </a>
                 </div>
 
