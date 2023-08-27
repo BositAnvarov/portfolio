@@ -1,5 +1,5 @@
 .home {
-    background-color: rgba(174, 174, 174, 1);
+    background-color: #D7C49EFF;
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
@@ -12,7 +12,7 @@
     margin: 0 auto;
     height: 640px;
     row-gap: 0;
-    max-width: 850px;
+    max-width: 1000px;
 }
 
 h1 {
@@ -24,7 +24,7 @@ h1 {
     text-transform: uppercase;
     font-size: 3.5rem;
     font-weight: bold; /* Optional: make the text bold */
-    color: #333; /* Text color */
+    color: #343148FF; /* Text color */
     letter-spacing: 2px; /* Adjust letter spacing as needed */
 }
 
@@ -49,7 +49,8 @@ h1 {
     writing-mode: vertical-lr;
     transform: rotate(180deg);
     font-weight: bold;
-    color: #333;
+    color: #343148FF;
+    cursor: pointer;
     
 }
 

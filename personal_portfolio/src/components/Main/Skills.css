@@ -1,0 +1,36 @@
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0 0 4rem 0;
+    margin: 0 auto;
+    justify-items: center;
+    column-gap: 2rem;
+    max-width: 1000px;    
+}
+
+
+.skills-subtitle {
+    color: #343148FF; /* The text color */
+    margin: 0 0 1.5rem 0;
+    font-style: italic;
+    display: flex;
+    justify-content: center;
+}
+
+.skills-items {
+    display: flex;
+    flex-wrap: wrap;
+    color: #343148FF;
+    gap: 10px; /* Adjust the gap as needed */
+}
+  
+.skills-name {
+    background-color: #D7C49EFF; /* Background color of the rectangular box */
+    padding: 10px; /* Adjust the padding as needed */
+    border: 1px solid #ddd; /* Add a border to the box */
+    border-radius: 5px; /* Rounded corners for the box */
+    margin-right: 10px; /* Add margin between skills if desired */
+}
+
+
+
