@@ -8,9 +8,9 @@ function Header() {
         <header className='header'>
             <nav className="nav-bar">
                 <div>
-                    <a href="/#home" className="nav-logo">
+                    <Link to="home" spy={true} smooth={true} offset={0} duration={500} className="nav-logo">
                         Abdulbosit Anvarov
-                    </a>
+                    </Link>
                 </div>
 
                 <div className="nav-menu">

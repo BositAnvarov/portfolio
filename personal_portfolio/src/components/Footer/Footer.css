@@ -43,6 +43,7 @@
 .footer-link {
   text-decoration: none;
   color: #aeaeae79;
+  cursor: pointer;
 }
 
 .socials {
