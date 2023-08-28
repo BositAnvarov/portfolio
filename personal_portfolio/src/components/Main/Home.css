@@ -13,6 +13,7 @@
     height: 640px;
     row-gap: 0;
     max-width: 1000px;
+    position: relative;
 }
 
 h1 {
@@ -55,10 +56,10 @@ h1 {
 }
 
 .home-img {
-    position: absolute;
+    position:absolute;
     opacity: 1;
     width: 375px;
-    right: 28%;
+    right: 5%;
     bottom: 15px;
     border: 2px solid rgba(174, 174, 174, 1); /* Border color is a shade of blue (#3498db) */
     border-radius: 15px; /* Rounded corners for a modern look */
