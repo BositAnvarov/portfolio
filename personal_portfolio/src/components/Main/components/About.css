@@ -39,9 +39,16 @@
   
 .social {
     color: #343148FF;
-    margin-right: 10px;
+    margin-left: 10px;
     font-size: large;
 }
 
+.about-text {
+    color: #343148FF;
+}
+
+.about-text span{
+    font-weight: bold;
+}
 
 

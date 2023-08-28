@@ -48,7 +48,12 @@
     color: #343148FF;
     font-weight: bold;
     cursor: pointer; /* Change the cursor to pointer */
+    padding-bottom: 10px;
+    border-bottom: 4px solid transparent; /* Start with a transparent border */
+}
 
+.nav-item a.active {
+    border-bottom-color: #343148FF; /* Apply the border color for the active item */
 }
 
 .nav-item:hover {
