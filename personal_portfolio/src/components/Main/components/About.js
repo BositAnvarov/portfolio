@@ -4,6 +4,7 @@ import './About.css'; // Import your CSS file for styling
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faFileLines } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
+import PDF from "../Resume.pdf"
 
 
 function About() {
@@ -47,7 +48,7 @@ function About() {
             <h2 className='about-subtitle'>
               MY RESUME
             </h2>
-            <a href='/Resume.pdf' target='_blank' rel='noopener noreferrer'>
+            <a href={PDF} target='_blank'  rel='noopener noreferrer'>
               <FontAwesomeIcon icon={faFileLines} className='resume-file' />
             </a>
           </div>
