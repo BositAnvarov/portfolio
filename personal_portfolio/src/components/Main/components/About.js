@@ -47,7 +47,7 @@ function About() {
             <h2 className='about-subtitle'>
               MY RESUME
             </h2>
-            <a href='#resume' >
+            <a href={process.env.PUBLIC_URL + '/pdf/your-resume.pdf'} >
               <FontAwesomeIcon icon={faFileLines} className='resume-file'/>
             </a>
           </div>
