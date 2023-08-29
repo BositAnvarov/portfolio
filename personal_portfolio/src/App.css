@@ -37,3 +37,22 @@
   }
 }
 
+
+/* App.css */
+
+/* Apply custom scrollbar styles to the entire app */
+body {
+  scrollbar-width: thin; /* For Firefox compatibility */
+  scrollbar-color: #343148FF hsla(0, 0%, 7%, 0.25); /* For Firefox compatibility */
+}
+
+/* Customize the WebKit scrollbar */
+body::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #343148FF; /* Color of the thumb */
+  border-radius: 4px; /* Rounded thumb corners */
+}
+

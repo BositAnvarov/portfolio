@@ -121,7 +121,7 @@
 }
 
 .project-desc span {
-    font-weight: bold;
+    font-weight: bolder;
     color: #343148FF;
     font-style: italic;
     margin-left: 0.5em;
@@ -131,3 +131,5 @@
     text-decoration: underline;
     cursor: pointer;
 }
+
+

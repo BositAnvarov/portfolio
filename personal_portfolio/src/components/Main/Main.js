@@ -10,7 +10,7 @@ import './Main.css'; // Import your CSS file for styling
 // Reusable component for applying motion animation
 function AnimatedComponent({ children }) {
   const ref = useRef(null);
-  const isInView = useInView(ref);
+  const isInView = useInView(ref, {once: true});
 
   const controls = useAnimation();
 
@@ -18,8 +18,6 @@ function AnimatedComponent({ children }) {
     console.log(isInView)
     if (isInView) {
       controls.start('visible');
-    } else {
-      controls.start('hidden')
     }
   }, [isInView, controls]);
 
@@ -34,7 +32,7 @@ function AnimatedComponent({ children }) {
       variants={motionVariants}
       initial='hidden'
       animate={controls}
-      transition={{ duration: 1, delay: 1 }}
+      transition={{ duration: 0.5, delay: 0.25 }}
     >
       {children}
     </motion.div>
