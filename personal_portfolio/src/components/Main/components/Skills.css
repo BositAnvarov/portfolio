@@ -22,14 +22,19 @@
     flex-wrap: wrap;
     color: #343148FF;
     gap: 10px; /* Adjust the gap as needed */
+    
 }
   
 .skills-name {
     background-color: #D7C49EFF; /* Background color of the rectangular box */
     padding: 10px; /* Adjust the padding as needed */
-    border: 1px solid #ddd; /* Add a border to the box */
-    border-radius: 5px; /* Rounded corners for the box */
+    border-radius: 0.8rem; /* Rounded corners for the box */
     margin-right: 10px; /* Add margin between skills if desired */
+}
+
+.skills-items :hover{
+    background-color: #343148FF;
+    color: #D7C49EFF;
 }
 
 

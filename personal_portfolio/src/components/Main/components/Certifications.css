@@ -1,0 +1,72 @@
+.certifications-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr); /* Two rows */
+    padding: 0 0 4rem 0;
+    margin: 0 auto;
+    justify-items: center;
+    align-items: center; /* Center vertically */
+    column-gap: 2rem;
+    row-gap: 2rem;
+    max-width: 1000px;
+  }
+  
+.certifications-subtitle {
+    color: #343148FF;
+    margin: 0 0 1.5rem 0;
+    font-style: italic;
+    text-align: center; /* Center horizontally */
+}
+  
+.logo {
+    max-height: 120px;
+    display: block; /* To center image */
+    margin: 0 auto; /* Center horizontally */
+}
+  
+.certifications-progress {
+    color: #343148FF;
+    text-align: center; /* Center horizontally */
+}
+progress {
+    width: 100%; /* Make the progress bar full width */
+    height: 20px; /* Adjust the height as needed */
+    appearance: none; /* Remove the default styles */
+    vertical-align: middle; /* Vertically center the progress bar */
+    margin-top: 10px; /* Adjust the margin to lower the position */
+}
+  
+progress::-webkit-progress-bar {
+    background-color: #ddd; /* Background color of the progress bar */
+}
+  
+progress::-webkit-progress-value {
+    background-color: #343148FF; /* Color of the progress */
+}
+  
+.certifications-progress {
+    color: #343148FF;
+    text-align: center;
+    font-weight: bold; /* Make the percentage bold */
+}
+  
+.see-more-button {
+    background-color: #D7C49EFF;
+    color: #343148FF;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block; /* Center button horizontally */
+    margin: 0 auto; /* Center button horizontally */
+}
+
+.see-more-button :hover {
+    background-color: #343148FF;
+    color: #D7C49EFF;
+}
+  
+.certification-description {
+    text-align: center; /* Center horizontally */
+}
+  

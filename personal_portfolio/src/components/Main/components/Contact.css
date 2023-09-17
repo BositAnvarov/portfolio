@@ -1,4 +1,5 @@
 .contact {
+    background-color: #FAFAFF;
     padding-bottom: 6rem;
     padding-top: 4rem;
 }
@@ -13,9 +14,11 @@
     max-width: 1000px;    
 }
 
-.contact-content {
-    
+.contact-content h3{
     color: #343148FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .contact-items {

@@ -4,6 +4,7 @@ import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
+import Certifications from './components/Certifications';
 import './Main.css'; // Import your CSS file for styling
 
 function Main() {
@@ -20,6 +21,9 @@ function Main() {
 
       {/* Projects Component */}
       <Projects />
+
+      {/* Certifications & Achievements component*/}
+      <Certifications />
 
       {/* Contact Component */}
       <Contact />
