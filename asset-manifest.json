@@ -1,17 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.90a637c7.css",
-    "main.js": "/static/js/main.68b9a1c3.js",
+    "main.css": "/static/css/main.a4f73ad9.css",
+    "main.js": "/static/js/main.6230b964.js",
     "static/js/787.fb771931.chunk.js": "/static/js/787.fb771931.chunk.js",
     "static/media/Gradutation.jpg": "/static/media/Gradutation.7a1819f2fe0410d2e6e5.jpg",
     "static/media/Resume.pdf": "/static/media/Resume.2d33e542b03898381995.pdf",
+    "static/media/aws_solutions_architect.png": "/static/media/aws_solutions_architect.77fbf7073eba7b63643d.png",
+    "static/media/aws_practitioner.png": "/static/media/aws_practitioner.f685d63a35961ca83875.png",
+    "static/media/az-900.png": "/static/media/az-900.dd49b3c54249c87368c6.png",
+    "static/media/Walmart_logo.png": "/static/media/Walmart_logo.22979acac4f948b2513e.png",
+    "static/media/linked_in.png": "/static/media/linked_in.1287304cadce5a110bf3.png",
+    "static/media/comptia_network.png": "/static/media/comptia_network.117efb1c3c9072958e10.png",
+    "static/media/University-of-Washington-Logo.png": "/static/media/University-of-Washington-Logo.334d683d50be94dca9c5.png",
     "index.html": "/index.html",
-    "main.90a637c7.css.map": "/static/css/main.90a637c7.css.map",
-    "main.68b9a1c3.js.map": "/static/js/main.68b9a1c3.js.map",
+    "main.a4f73ad9.css.map": "/static/css/main.a4f73ad9.css.map",
+    "main.6230b964.js.map": "/static/js/main.6230b964.js.map",
     "787.fb771931.chunk.js.map": "/static/js/787.fb771931.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.90a637c7.css",
-    "static/js/main.68b9a1c3.js"
+    "static/css/main.a4f73ad9.css",
+    "static/js/main.6230b964.js"
   ]
 }
