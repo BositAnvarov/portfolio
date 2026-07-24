@@ -88,6 +88,13 @@ h1 { max-width: 790px; font-size: clamp(2.8rem, 6.2vw, 6.15rem); line-height: .9
 .roadmap-stage-top, .roadmap-stage-bottom { display: flex; justify-content: space-between; color: #61747e; font: 9px monospace; letter-spacing: .08em; text-transform: uppercase; }
 .roadmap-stage-bottom { color: var(--accent); }
 .roadmap-object { position: relative; display: grid; place-items: center; width: min(31vw, 300px); aspect-ratio: 1; margin: auto; transform-origin: center; }
+.roadmap-person { position: absolute; top: 3%; left: 0; z-index: 4; width: 47%; height: 94%; background-image: url('/roadmap/life-journey-sprite.png'); background-repeat: no-repeat; background-size: 500% 100%; background-position-y: center; transform-origin: center bottom; filter: drop-shadow(0 17px 14px rgba(0,0,0,.22)); transition: background-position .65s ease; }
+.roadmap-person[data-stage="kid"] { background-position-x: 0%; }
+.roadmap-person[data-stage="student"] { background-position-x: 25%; }
+.roadmap-person[data-stage="college"] { background-position-x: 50%; }
+.roadmap-person[data-stage="engineer"] { background-position-x: 75%; }
+.roadmap-person[data-stage="future"] { background-position-x: 100%; }
+.roadmap-person-badge { position: absolute; right: 12%; bottom: 19%; z-index: 5; display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid rgba(131,213,232,.48); color: var(--accent); background: rgba(9,11,15,.8); box-shadow: 0 0 18px rgba(131,213,232,.2); }
 .roadmap-core { position: relative; z-index: 2; display: grid; place-items: center; width: 88px; height: 88px; border: 1px solid rgba(174,239,248,.75); color: var(--accent); background: radial-gradient(circle at 35% 30%, rgba(198,248,255,.3), rgba(42,74,91,.18) 40%, rgba(10,16,23,.9) 72%); box-shadow: inset 0 0 26px rgba(131,213,232,.17), 0 0 35px rgba(131,213,232,.2); transition: border-radius .5s ease, clip-path .5s ease, background .5s ease, box-shadow .5s ease; }
 .roadmap-object[data-shape="foundation"] .roadmap-core { border-radius: 50%; }
 .roadmap-object[data-shape="people"] .roadmap-core { border-radius: 34% 66% 55% 45% / 45% 40% 60% 55%; background: radial-gradient(circle at 35% 30%, rgba(238,220,255,.35), rgba(71,57,104,.22) 42%, rgba(10,16,23,.9) 75%); }

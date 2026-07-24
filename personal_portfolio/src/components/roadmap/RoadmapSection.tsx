@@ -15,7 +15,7 @@ const milestones = [
 export function RoadmapSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const objectRef = useRef<HTMLDivElement>(null);
-  const characterRef = useRef<HTMLDivElement>(null);
+  const personRef = useRef<HTMLDivElement>(null);
   const [activeStep, setActiveStep] = useState(0);
   const active = milestones[activeStep];
   const ActiveIcon = active.icon;
@@ -23,8 +23,8 @@ export function RoadmapSection() {
   useEffect(() => {
     const section = sectionRef.current;
     const object = objectRef.current;
-    const character = characterRef.current;
-    if (!section || !object || !character) return;
+    const person = personRef.current;
+    if (!section || !object || !person) return;
 
     const steps = Array.from(section.querySelectorAll<HTMLElement>('.roadmap-step'));
     const particles = Array.from(object.querySelectorAll<HTMLElement>('.roadmap-particle'));
@@ -33,7 +33,7 @@ export function RoadmapSection() {
 
     const activate = (index: number) => {
       setActiveStep(index);
-      character.dataset.stage = milestones[index].stage;
+      person.dataset.stage = milestones[index].stage;
       if (reduceMotion) return;
 
       runningAnimations.push(animate(object, {
@@ -42,11 +42,12 @@ export function RoadmapSection() {
         duration: 950,
         easing: 'easeOutElastic(1, .7)',
       }));
-      runningAnimations.push(animate(character, {
-        scale: [0.78, 1.14, 1],
-        translateY: [18, -8, 0],
+      const positions = ['-32%', '0%', '30%', '-25%', '25%'];
+      runningAnimations.push(animate(person, {
+        left: [positions[Math.max(0, index - 1)], positions[index]],
+        scale: [0.96, 1],
         duration: 1000,
-        easing: 'easeOutBack',
+        easing: 'easeOutCubic',
       }));
       const glow = object.querySelector<HTMLElement>('.roadmap-core-glow');
       if (glow) runningAnimations.push(animate(glow, {
@@ -109,17 +110,8 @@ export function RoadmapSection() {
             <div className="roadmap-orbit roadmap-orbit-b" />
             <div className="roadmap-orbit roadmap-orbit-c" />
             <div className="roadmap-core-glow" />
-            <div ref={characterRef} className="roadmap-character" data-stage={active.stage}>
-              <span className="character-backpack" />
-              <span className="character-head"><i /></span>
-              <span className="character-neck" />
-              <span className="character-torso" />
-              <span className="character-arm character-arm-left" />
-              <span className="character-arm character-arm-right" />
-              <span className="character-leg character-leg-left" />
-              <span className="character-leg character-leg-right" />
-              <span className="character-tool"><ActiveIcon size={17} strokeWidth={1.8} /></span>
-            </div>
+            <div ref={personRef} className="roadmap-person" data-stage={active.stage} />
+            <div className="roadmap-person-badge"><ActiveIcon size={16} strokeWidth={1.6} /></div>
             <span className="roadmap-particle particle-a" />
             <span className="roadmap-particle particle-b" />
             <span className="roadmap-particle particle-c" />
