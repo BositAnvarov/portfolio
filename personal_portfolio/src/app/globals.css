@@ -73,7 +73,7 @@ h1 { max-width: 790px; font-size: clamp(2.8rem, 6.2vw, 6.15rem); line-height: .9
 .roadmap-index { color: #596a73; text-transform: uppercase; }
 .roadmap-scroll-cue { display: inline-flex; align-items: center; gap: 8px; margin-top: 32px; color: #71818a; font: 10px monospace; text-transform: uppercase; letter-spacing: .08em; }
 .roadmap-scroll-cue:hover { color: var(--accent); }
-.roadmap-lab { display: grid; grid-template-columns: minmax(220px, .85fr) minmax(360px, 1fr) minmax(170px, .55fr); gap: clamp(28px, 5vw, 75px); margin-top: 90px; }
+.roadmap-lab { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(45px, 7vw, 110px); margin-top: 90px; }
 .roadmap-story { position: relative; }
 .roadmap-step { display: flex; align-items: center; gap: 18px; min-height: 76vh; padding: 50px 0; border-top: 1px solid transparent; }
 .roadmap-step + .roadmap-step { border-color: rgba(170,196,211,.08); }
@@ -84,15 +84,16 @@ h1 { max-width: 790px; font-size: clamp(2.8rem, 6.2vw, 6.15rem); line-height: .9
 .roadmap-step-meta { margin-top: 20px; color: #536874; font: 10px monospace; transition: color .35s ease; }
 .roadmap-step.is-active .roadmap-step-number, .roadmap-step.is-active h3 { color: var(--text); }
 .roadmap-step.is-active .roadmap-description, .roadmap-step.is-active .roadmap-step-meta { color: var(--muted); }
-.roadmap-stage { position: sticky; top: 92px; display: flex; flex-direction: column; justify-content: space-between; align-self: start; height: min(620px, calc(100vh - 125px)); min-height: 500px; padding: 17px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; background: radial-gradient(circle at center, rgba(67,118,141,.08), transparent 48%); }
+.roadmap-stage { position: sticky; top: 92px; display: flex; flex-direction: column; justify-content: space-between; align-self: start; height: min(720px, calc(100vh - 125px)); min-height: 580px; padding: 19px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; background: radial-gradient(circle at center, rgba(67,118,141,.1), transparent 52%); }
 .roadmap-stage-top, .roadmap-stage-bottom { display: flex; justify-content: space-between; color: #61747e; font: 9px monospace; letter-spacing: .08em; text-transform: uppercase; }
 .roadmap-stage-bottom { color: var(--accent); }
-.roadmap-object { position: relative; display: grid; place-items: center; width: min(31vw, 300px); aspect-ratio: 1; margin: auto; transform-origin: center; }
-.roadmap-person { position: absolute; top: 3%; left: 0; z-index: 4; width: 47%; height: 94%; background-image: url('/roadmap/life-journey-sprite.png'); background-repeat: no-repeat; background-size: 500% 100%; background-position-y: center; transform-origin: center bottom; filter: drop-shadow(0 17px 14px rgba(0,0,0,.22)); transition: background-position .65s ease; }
+.roadmap-object { position: relative; display: grid; place-items: center; width: min(42vw, 460px); aspect-ratio: 1; margin: auto; transform-origin: center; }
+.roadmap-person { position: absolute; top: 3%; left: 0; z-index: 4; width: 47%; height: 94%; background-image: url('/roadmap/life-journey-sprite-6.png'); background-repeat: no-repeat; background-size: 600% 100%; background-position-y: center; transform-origin: center bottom; filter: drop-shadow(0 17px 14px rgba(0,0,0,.22)); transition: background-position .65s ease; }
 .roadmap-person[data-stage="kid"] { background-position-x: 0%; }
-.roadmap-person[data-stage="student"] { background-position-x: 25%; }
-.roadmap-person[data-stage="college"] { background-position-x: 50%; }
-.roadmap-person[data-stage="engineer"] { background-position-x: 75%; }
+.roadmap-person[data-stage="student"] { background-position-x: 20%; }
+.roadmap-person[data-stage="college"] { background-position-x: 40%; }
+.roadmap-person[data-stage="graduation"] { background-position-x: 60%; }
+.roadmap-person[data-stage="engineer"] { background-position-x: 80%; }
 .roadmap-person[data-stage="future"] { background-position-x: 100%; }
 .roadmap-person-badge { position: absolute; right: 12%; bottom: 19%; z-index: 5; display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid rgba(131,213,232,.48); color: var(--accent); background: rgba(9,11,15,.8); box-shadow: 0 0 18px rgba(131,213,232,.2); }
 .roadmap-core { position: relative; z-index: 2; display: grid; place-items: center; width: 88px; height: 88px; border: 1px solid rgba(174,239,248,.75); color: var(--accent); background: radial-gradient(circle at 35% 30%, rgba(198,248,255,.3), rgba(42,74,91,.18) 40%, rgba(10,16,23,.9) 72%); box-shadow: inset 0 0 26px rgba(131,213,232,.17), 0 0 35px rgba(131,213,232,.2); transition: border-radius .5s ease, clip-path .5s ease, background .5s ease, box-shadow .5s ease; }

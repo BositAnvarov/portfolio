@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowDown, ArrowUpRight, BriefcaseBusiness, Code2, FileText, Mail, Sparkles } from 'lucide-react';
+import { ArrowDown, BriefcaseBusiness, Code2, FileText, GraduationCap, Mail, Sparkles } from 'lucide-react';
 import { animate, stagger } from 'animejs';
 import { useEffect, useRef, useState } from 'react';
 
@@ -8,8 +8,9 @@ const milestones = [
   { number: '01', label: 'The beginning', title: 'Every story starts somewhere.', description: 'A curious kid starts school, asks too many questions, and learns that the things worth building usually begin as a rough sketch.', icon: FileText, meta: 'School · a first spark', stage: 'kid' },
   { number: '02', label: 'Learning the language', title: 'Finding a place in the world of ideas.', description: 'Classes, experiments, and the first moments of realizing that a computer can turn an idea into something other people can use.', icon: Sparkles, meta: 'High school · curiosity compounds', stage: 'student' },
   { number: '03', label: 'The leap', title: 'College turns curiosity into craft.', description: 'Hard problems, long nights, new people, and the freedom to fail forward while learning how systems fit together.', icon: BriefcaseBusiness, meta: 'University · foundations', stage: 'college' },
-  { number: '04', label: 'The work', title: 'Turning knowledge into responsibility.', description: 'Internships and production systems make the work real: users, teammates, deadlines, failures, and software that has to hold up.', icon: Code2, meta: 'Engineering · production', stage: 'engineer' },
-  { number: '05', label: 'The person today', title: 'Still growing. Still building.', description: 'The kid is still in there—now carrying more context, more responsibility, and a bigger curiosity about what comes next.', icon: Mail, meta: 'Software Engineer · today', stage: 'future' },
+  { number: '04', label: 'The checkpoint', title: 'Graduation — 2023.', description: 'A milestone worth pausing for: years of study became a degree, and the next chapter started to feel real.', icon: GraduationCap, meta: 'B.S. Computer Science · 2023', stage: 'graduation' },
+  { number: '05', label: 'The work', title: 'Turning knowledge into responsibility.', description: 'Internships and production systems make the work real: users, teammates, deadlines, failures, and software that has to hold up.', icon: Code2, meta: 'Engineering · production', stage: 'engineer' },
+  { number: '06', label: 'The person today', title: 'Still growing. Still building.', description: 'The kid is still in there—now carrying more context, more responsibility, and a bigger curiosity about what comes next.', icon: Mail, meta: 'Software Engineer · today', stage: 'future' },
 ];
 
 export function RoadmapSection() {
@@ -42,7 +43,7 @@ export function RoadmapSection() {
         duration: 950,
         easing: 'easeOutElastic(1, .7)',
       }));
-      const positions = ['-32%', '0%', '30%', '-25%', '25%'];
+      const positions = ['-32%', '-6%', '30%', '-24%', '5%', '28%'];
       runningAnimations.push(animate(person, {
         left: [positions[Math.max(0, index - 1)], positions[index]],
         scale: [0.96, 1],
@@ -104,7 +105,7 @@ export function RoadmapSection() {
         </div>
 
         <div className="roadmap-stage" aria-live="polite">
-          <div className="roadmap-stage-top"><span>LIFE / IN PROGRESS</span><span>0{activeStep + 1} / 05</span></div>
+          <div className="roadmap-stage-top"><span>LIFE / IN PROGRESS</span><span>0{activeStep + 1} / 06</span></div>
           <div ref={objectRef} className="roadmap-object" aria-hidden="true">
             <div className="roadmap-orbit roadmap-orbit-a" />
             <div className="roadmap-orbit roadmap-orbit-b" />
@@ -120,14 +121,6 @@ export function RoadmapSection() {
           <div className="roadmap-stage-bottom"><span>{active.label}</span><span className="status-live"><i /> tracking</span></div>
         </div>
 
-        <aside className="roadmap-readout">
-          <p className="roadmap-readout-kicker">Current readout</p>
-          <ActiveIcon size={18} strokeWidth={1.5} />
-          <p className="roadmap-readout-label">{active.label}</p>
-          <p className="roadmap-readout-meta">{active.meta}</p>
-          {activeStep === 0 && <a href="/resume/Abdulbosit-Anvarov-Resume.pdf">Open resume <ArrowUpRight size={13} /></a>}
-          {activeStep === milestones.length - 1 && <a href="#contact">Start a conversation <ArrowUpRight size={13} /></a>}
-        </aside>
       </div>
 
       <a className="roadmap-scroll-cue" href="#experience"><ArrowDown size={14} /> Continue to the details</a>
