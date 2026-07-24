@@ -96,6 +96,29 @@ h1 { max-width: 790px; font-size: clamp(2.8rem, 6.2vw, 6.15rem); line-height: .9
 .roadmap-object[data-shape="signal"] .roadmap-core { border-radius: 15%; clip-path: polygon(50% 0, 100% 28%, 82% 100%, 18% 100%, 0 28%); background: linear-gradient(140deg, rgba(171,249,255,.32), rgba(63,73,149,.24) 55%, rgba(10,16,23,.95)); }
 .roadmap-object[data-shape="future"] .roadmap-core { border-radius: 50%; clip-path: polygon(50% 0, 61% 35%, 100% 50%, 61% 65%, 50% 100%, 39% 65%, 0 50%, 39% 35%); background: radial-gradient(circle, rgba(233,225,255,.48), rgba(93,81,176,.26) 45%, rgba(10,16,23,.95) 78%); }
 .roadmap-core-glow { position: absolute; z-index: 1; width: 130px; height: 130px; border-radius: 50%; background: var(--accent); filter: blur(25px); opacity: .12; }
+.roadmap-character { --head-size: 42px; --torso-width: 48px; --torso-height: 66px; --limb-width: 10px; --leg-height: 56px; position: relative; z-index: 4; width: 122px; height: 220px; transform-origin: center bottom; }
+.roadmap-character[data-stage="kid"] { --head-size: 31px; --torso-width: 34px; --torso-height: 43px; --limb-width: 7px; --leg-height: 38px; }
+.roadmap-character[data-stage="student"] { --head-size: 39px; --torso-width: 43px; --torso-height: 56px; --limb-width: 8px; --leg-height: 48px; }
+.roadmap-character[data-stage="college"] { --head-size: 47px; --torso-width: 52px; --torso-height: 72px; --limb-width: 9px; --leg-height: 59px; }
+.roadmap-character[data-stage="engineer"], .roadmap-character[data-stage="future"] { --head-size: 52px; --torso-width: 58px; --torso-height: 80px; --limb-width: 10px; --leg-height: 67px; }
+.character-head { position: absolute; top: 10px; left: 50%; width: var(--head-size); height: var(--head-size); border: 1px solid rgba(246,224,203,.9); border-radius: 48% 52% 46% 54%; background: #d99c78; transform: translateX(-50%); transition: width .65s ease, height .65s ease; }
+.character-head::before { content: ''; position: absolute; top: -4px; left: -2px; width: 105%; height: 42%; border-radius: 70% 35% 55% 20%; background: #24333b; }
+.character-head::after { content: ''; position: absolute; top: 53%; left: 27%; width: 4px; height: 4px; border-radius: 50%; background: #182127; box-shadow: 14px 0 #182127, 7px 10px 0 -1px #9b5b57; }
+.character-head i { position: absolute; right: -3px; bottom: 28%; width: 7px; height: 10px; border: 1px solid #d99c78; border-left: 0; border-radius: 0 50% 50% 0; }
+.character-neck { position: absolute; top: calc(10px + var(--head-size) - 1px); left: 50%; width: 12px; height: 13px; background: #c98369; transform: translateX(-50%); }
+.character-torso { position: absolute; top: calc(10px + var(--head-size) + 9px); left: 50%; width: var(--torso-width); height: var(--torso-height); border: 1px solid rgba(131,213,232,.65); border-radius: 11px 11px 5px 5px; background: linear-gradient(145deg, #507482, #1b3541); transform: translateX(-50%); transition: width .65s ease, height .65s ease; }
+.character-torso::after { content: '✦'; position: absolute; top: 45%; left: 50%; color: rgba(210,249,255,.65); font-size: 10px; transform: translate(-50%, -50%); }
+.character-arm, .character-leg { position: absolute; border: 1px solid #78a9b3; border-radius: 9px; background: #2c5664; transform-origin: top center; transition: all .65s ease; }
+.character-arm { top: calc(10px + var(--head-size) + 14px); width: var(--limb-width); height: calc(var(--torso-height) - 9px); }
+.character-arm-left { left: calc(50% - (var(--torso-width) / 2) - var(--limb-width) - 3px); transform: rotate(9deg); }
+.character-arm-right { right: calc(50% - (var(--torso-width) / 2) - var(--limb-width) - 3px); transform: rotate(-9deg); }
+.character-leg { top: calc(10px + var(--head-size) + var(--torso-height) + 8px); width: var(--limb-width); height: var(--leg-height); background: #283c5c; }
+.character-leg-left { left: calc(50% - var(--limb-width) - 3px); transform: rotate(3deg); }
+.character-leg-right { right: calc(50% - var(--limb-width) - 3px); transform: rotate(-3deg); }
+.character-backpack { position: absolute; top: calc(10px + var(--head-size) + 16px); left: calc(50% - (var(--torso-width) / 2) - 10px); width: 15px; height: calc(var(--torso-height) - 7px); border: 1px solid rgba(168,230,240,.45); border-radius: 7px 3px 3px 7px; background: #24314f; opacity: .9; transition: all .65s ease; }
+.character-tool { position: absolute; right: calc(50% - (var(--torso-width) / 2) - 28px); top: calc(10px + var(--head-size) + var(--torso-height) - 5px); display: grid; place-items: center; width: 29px; height: 21px; border: 1px solid rgba(131,213,232,.5); color: var(--accent); background: rgba(9,11,15,.9); opacity: 0; transform: rotate(-8deg); transition: opacity .5s ease, top .65s ease, right .65s ease; }
+.roadmap-character[data-stage="college"] .character-tool, .roadmap-character[data-stage="engineer"] .character-tool, .roadmap-character[data-stage="future"] .character-tool { opacity: 1; }
+.roadmap-character[data-stage="engineer"] .character-torso, .roadmap-character[data-stage="future"] .character-torso { background: linear-gradient(145deg, #43536f, #1d283f); }
 .roadmap-orbit { position: absolute; border: 1px solid rgba(131,213,232,.17); border-radius: 50%; transform: rotate(20deg); }
 .roadmap-orbit-a { width: 68%; height: 28%; transform: rotate(28deg); }
 .roadmap-orbit-b { width: 94%; height: 42%; transform: rotate(-37deg); border-color: rgba(136,129,255,.2); }

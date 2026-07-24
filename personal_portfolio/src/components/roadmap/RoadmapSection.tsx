@@ -5,16 +5,17 @@ import { animate, stagger } from 'animejs';
 import { useEffect, useRef, useState } from 'react';
 
 const milestones = [
-  { number: '01', label: 'The foundation', title: 'A resume is a map, not a finish line.', description: 'Computer science, systems thinking, and a bias toward making complicated things easier to operate.', icon: FileText, meta: 'CS → systems → software', shape: 'foundation' },
-  { number: '02', label: 'First signal', title: 'Learning to build for people.', description: 'Healthcare software made the stakes clear: reliable data, accessible experiences, and small details that change how someone works.', icon: Sparkles, meta: 'Sensoria Health · 2024', shape: 'people' },
-  { number: '03', label: 'At scale', title: 'From features to production systems.', description: 'Enterprise work sharpened the craft across APIs, automation, secure delivery, and the distributed systems underneath everyday workflows.', icon: BriefcaseBusiness, meta: 'Cencora · 2024—2025', shape: 'scale' },
-  { number: '04', label: 'Current chapter', title: 'Making high-volume data actionable.', description: 'Cloud and observability systems around millions of events—so teams can see what matters and act with confidence.', icon: Code2, meta: 'BNSF Railway · 2025—now', shape: 'signal' },
-  { number: '05', label: 'What’s next', title: 'Let’s build the next chapter together.', description: 'An interesting backend, cloud, distributed-systems, or reliability problem is always worth a conversation.', icon: Mail, meta: 'Open to meaningful problems', shape: 'future' },
+  { number: '01', label: 'The beginning', title: 'Every story starts somewhere.', description: 'A curious kid starts school, asks too many questions, and learns that the things worth building usually begin as a rough sketch.', icon: FileText, meta: 'School · a first spark', stage: 'kid' },
+  { number: '02', label: 'Learning the language', title: 'Finding a place in the world of ideas.', description: 'Classes, experiments, and the first moments of realizing that a computer can turn an idea into something other people can use.', icon: Sparkles, meta: 'High school · curiosity compounds', stage: 'student' },
+  { number: '03', label: 'The leap', title: 'College turns curiosity into craft.', description: 'Hard problems, long nights, new people, and the freedom to fail forward while learning how systems fit together.', icon: BriefcaseBusiness, meta: 'University · foundations', stage: 'college' },
+  { number: '04', label: 'The work', title: 'Turning knowledge into responsibility.', description: 'Internships and production systems make the work real: users, teammates, deadlines, failures, and software that has to hold up.', icon: Code2, meta: 'Engineering · production', stage: 'engineer' },
+  { number: '05', label: 'The person today', title: 'Still growing. Still building.', description: 'The kid is still in there—now carrying more context, more responsibility, and a bigger curiosity about what comes next.', icon: Mail, meta: 'Software Engineer · today', stage: 'future' },
 ];
 
 export function RoadmapSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const objectRef = useRef<HTMLDivElement>(null);
+  const characterRef = useRef<HTMLDivElement>(null);
   const [activeStep, setActiveStep] = useState(0);
   const active = milestones[activeStep];
   const ActiveIcon = active.icon;
@@ -22,7 +23,8 @@ export function RoadmapSection() {
   useEffect(() => {
     const section = sectionRef.current;
     const object = objectRef.current;
-    if (!section || !object) return;
+    const character = characterRef.current;
+    if (!section || !object || !character) return;
 
     const steps = Array.from(section.querySelectorAll<HTMLElement>('.roadmap-step'));
     const particles = Array.from(object.querySelectorAll<HTMLElement>('.roadmap-particle'));
@@ -31,7 +33,7 @@ export function RoadmapSection() {
 
     const activate = (index: number) => {
       setActiveStep(index);
-      object.dataset.shape = milestones[index].shape;
+      character.dataset.stage = milestones[index].stage;
       if (reduceMotion) return;
 
       runningAnimations.push(animate(object, {
@@ -39,6 +41,12 @@ export function RoadmapSection() {
         rotate: [-8, 8, 0],
         duration: 950,
         easing: 'easeOutElastic(1, .7)',
+      }));
+      runningAnimations.push(animate(character, {
+        scale: [0.78, 1.14, 1],
+        translateY: [18, -8, 0],
+        duration: 1000,
+        easing: 'easeOutBack',
       }));
       const glow = object.querySelector<HTMLElement>('.roadmap-core-glow');
       if (glow) runningAnimations.push(animate(glow, {
@@ -74,9 +82,9 @@ export function RoadmapSection() {
       <div className="roadmap-heading">
         <div>
           <p className="section-kicker">03 / The journey</p>
-          <h2 id="roadmap-title">The object<br /><span className="accent-text">is the story.</span></h2>
+          <h2 id="roadmap-title">A life in<br /><span className="accent-text">motion.</span></h2>
         </div>
-        <p className="roadmap-lede">Scroll through the chapters that shaped how I approach software. Watch the signal in the middle change with each one.</p>
+        <p className="roadmap-lede">Scroll through the chapters that shaped who I am. Watch one small character grow through school, college, work, and everything in between.</p>
       </div>
 
       <div className="roadmap-lab">
@@ -95,13 +103,23 @@ export function RoadmapSection() {
         </div>
 
         <div className="roadmap-stage" aria-live="polite">
-          <div className="roadmap-stage-top"><span>LIVE SYSTEM</span><span>0{activeStep + 1} / 05</span></div>
-          <div ref={objectRef} className="roadmap-object" data-shape={active.shape} aria-hidden="true">
+          <div className="roadmap-stage-top"><span>LIFE / IN PROGRESS</span><span>0{activeStep + 1} / 05</span></div>
+          <div ref={objectRef} className="roadmap-object" aria-hidden="true">
             <div className="roadmap-orbit roadmap-orbit-a" />
             <div className="roadmap-orbit roadmap-orbit-b" />
             <div className="roadmap-orbit roadmap-orbit-c" />
             <div className="roadmap-core-glow" />
-            <div className="roadmap-core"><ActiveIcon size={32} strokeWidth={1.1} /></div>
+            <div ref={characterRef} className="roadmap-character" data-stage={active.stage}>
+              <span className="character-backpack" />
+              <span className="character-head"><i /></span>
+              <span className="character-neck" />
+              <span className="character-torso" />
+              <span className="character-arm character-arm-left" />
+              <span className="character-arm character-arm-right" />
+              <span className="character-leg character-leg-left" />
+              <span className="character-leg character-leg-right" />
+              <span className="character-tool"><ActiveIcon size={17} strokeWidth={1.8} /></span>
+            </div>
             <span className="roadmap-particle particle-a" />
             <span className="roadmap-particle particle-b" />
             <span className="roadmap-particle particle-c" />
