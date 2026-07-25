@@ -1,34 +1,33 @@
 'use client';
 
-import { ArrowDown, BriefcaseBusiness, Code2, FileText, GraduationCap, Mail, Sparkles } from 'lucide-react';
+import { BriefcaseBusiness, Code2, FileText, GraduationCap, Mail, Sparkles } from 'lucide-react';
 import { createTimeline } from 'animejs';
 import { useEffect, useRef, useState } from 'react';
+import { profile } from '@/data/portfolio';
 
 const milestones = [
-  { number: '01', label: 'The beginning', title: 'Every story starts somewhere.', description: 'A curious kid starts school, asks too many questions, and learns that the things worth building usually begin as a rough sketch.', icon: FileText, meta: 'School · a first spark', stage: 'kid' },
-  { number: '02', label: 'High school', title: 'Finding a place in the world of ideas.', description: 'Classes, experiments, and the first moments of realizing that a computer can turn an idea into something other people can use.', icon: Sparkles, meta: 'High school · curiosity compounds', stage: 'student' },
-  { number: '03', label: 'College', title: 'Curiosity becomes a craft.', description: 'Hard problems, long nights, new people, and the freedom to fail forward while learning how systems fit together.', icon: BriefcaseBusiness, meta: 'University · foundations', stage: 'college' },
-  { number: '04', label: 'Graduation', title: 'Graduation — 2023.', description: 'A milestone worth pausing for: years of study became a degree, and the next chapter started to feel real.', icon: GraduationCap, meta: 'B.S. Computer Science · 2023', stage: 'graduation' },
-  { number: '05', label: 'Career', title: 'Turning knowledge into responsibility.', description: 'Internships and production systems make the work real: users, teammates, deadlines, failures, and software that has to hold up.', icon: Code2, meta: 'Engineering · production', stage: 'engineer' },
-  { number: '06', label: 'The person today', title: 'Still growing. Still building.', description: 'The kid is still in there—now carrying more context, more responsibility, and a bigger curiosity about what comes next.', icon: Mail, meta: 'Software Engineer · today', stage: 'future' },
+  { number: '01', phase: 'High School', year: 'The beginning', label: 'A curious mind', title: 'Every story starts somewhere.', description: 'A kid who asked too many questions discovered that ideas could become things—and that learning could be its own kind of adventure.', icon: FileText, meta: 'Curiosity became the starting point', stage: 'kid', side: 'left' },
+  { number: '02', phase: 'High School', year: 'High school years', label: 'The first signal', title: 'Technology became a language.', description: 'Classes, experiments, and early projects revealed that a computer could turn an idea into something useful for other people.', icon: Sparkles, meta: 'The first real pull toward software', stage: 'student', side: 'right' },
+  { number: '03', phase: 'College', year: 'University', label: 'Learning the craft', title: 'Curiosity met discipline.', description: 'Hard problems, long nights, new people, and the freedom to fail forward built the foundations of an engineer.', icon: BriefcaseBusiness, meta: 'Computer science · systems · teamwork', stage: 'college', side: 'left' },
+  { number: '04', phase: 'College', year: '2023', label: 'A defining checkpoint', title: 'Graduation opened the next door.', description: 'Years of study became a Computer Science degree—and an important reminder that progress is made one difficult chapter at a time.', icon: GraduationCap, meta: 'B.S. Computer Science · 2023', stage: 'graduation', side: 'right' },
+  { number: '05', phase: 'Career', year: 'The first roles', label: 'The work became real', title: 'Knowledge turned into responsibility.', description: 'Internships and production systems introduced real users, real teammates, real failures, and software that had to hold up.', icon: Code2, meta: 'Healthcare · enterprise · production', stage: 'engineer', side: 'left' },
+  { number: '06', phase: 'Career', year: 'Today', label: 'Still becoming', title: 'Building systems that matter.', description: 'Now the work spans cloud platforms, distributed systems, and observability—while the curiosity that started everything keeps growing.', icon: Mail, meta: 'Software Engineer · the story continues', stage: 'future', side: 'right' },
 ];
 
-const phases = [
-  { id: 'high-school', eyebrow: 'Phase 01', title: 'High School', milestoneIndexes: [0, 1] },
-  { id: 'college', eyebrow: 'Phase 02', title: 'College', milestoneIndexes: [2, 3] },
-  { id: 'career', eyebrow: 'Phase 03', title: 'Career', milestoneIndexes: [4, 5] },
-];
+const phases = ['High School', 'College', 'Career'];
 
-const phasePositions = [
-  { entry: '-32%', first: '-32%', second: '-6%' },
-  { entry: '-6%', first: '30%', second: '-24%' },
-  { entry: '-24%', first: '5%', second: '28%' },
+const phaseMotion = [
+  { entry: '68%', first: '68%', second: '24%' },
+  { entry: '24%', first: '65%', second: '22%' },
+  { entry: '22%', first: '62%', second: '38%' },
 ];
 
 export function RoadmapSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const objectRef = useRef<HTMLDivElement>(null);
-  const personRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const avatarMoverRef = useRef<HTMLDivElement>(null);
+  const avatarRef = useRef<HTMLDivElement>(null);
+  const introRef = useRef<HTMLDivElement>(null);
   const [activeStep, setActiveStep] = useState(0);
   const [activePhase, setActivePhase] = useState(0);
   const active = milestones[activeStep];
@@ -36,161 +35,169 @@ export function RoadmapSection() {
 
   useEffect(() => {
     const section = sectionRef.current;
-    const object = objectRef.current;
-    const person = personRef.current;
-    if (!section || !object || !person) return;
+    const stage = stageRef.current;
+    const avatarMover = avatarMoverRef.current;
+    const avatar = avatarRef.current;
+    const intro = introRef.current;
+    if (!section || !stage || !avatarMover || !avatar || !intro) return;
 
-    const phaseSections = Array.from(section.querySelectorAll<HTMLElement>('.journey-phase'));
-    const particles = Array.from(object.querySelectorAll<HTMLElement>('.roadmap-particle'));
+    const highlights = Array.from(section.querySelectorAll<HTMLElement>('.journey-highlight'));
+    const triggers = Array.from(section.querySelectorAll<HTMLElement>('.journey-trigger'));
+    const ambientLines = Array.from(stage.querySelectorAll<HTMLElement>('.journey-ambient-line'));
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const buildPhaseTimeline = (phaseIndex: number) => {
-      const textBlocks = Array.from(phaseSections[phaseIndex].querySelectorAll<HTMLElement>('.milestone-text'));
-      const positions = phasePositions[phaseIndex];
+      const firstHighlight = highlights[phaseIndex * 2];
+      const secondHighlight = highlights[phaseIndex * 2 + 1];
+      const motion = phaseMotion[phaseIndex];
       const timeline = createTimeline({ autoplay: false });
 
       timeline
-        .add(person, { left: [positions.entry, positions.first], scale: [0.97, 1], duration: 320, ease: 'outCubic' }, 0)
-        .add(person, { left: positions.second, scale: [1, 1.02], duration: 680, ease: 'inOutCubic' }, 320)
-        .add(object, { rotate: [-2, 2, 0], scale: [0.985, 1.015, 1], duration: 1000, ease: 'inOutSine' }, 0)
-        .add(particles, { rotate: [0, 150], scale: [0.8, 1.2], duration: 1000, ease: 'inOutQuad' }, 0)
-        .add(textBlocks[0], { opacity: [0, 1], translateY: [36, 0], duration: 300, ease: 'outCubic' }, 20)
-        .add(textBlocks[0], { opacity: [1, 0.28], translateY: [0, -14], duration: 220, ease: 'inCubic' }, 390)
-        .add(textBlocks[1], { opacity: [0, 1], translateY: [36, 0], duration: 350, ease: 'outCubic' }, 500);
+        .add(avatarMover, { left: [motion.entry, motion.first], duration: 220, ease: 'outCubic' }, 0)
+        .add(avatarMover, { left: motion.second, duration: 780, ease: 'inOutCubic' }, 220)
+        .add(ambientLines, { rotate: [0, phaseIndex % 2 ? -8 : 8], opacity: [0.22, 0.52], duration: 1000, ease: 'inOutSine' }, 0)
+        .add(firstHighlight, { opacity: [0, 1], translateY: [34, 0], duration: 260, ease: 'outCubic' }, 80)
+        .add(firstHighlight, { opacity: [1, 0], translateY: [0, -22], duration: 180, ease: 'inCubic' }, 400)
+        .add(secondHighlight, { opacity: [0, 1], translateY: [34, 0], duration: 300, ease: 'outCubic' }, 520);
+
+      if (phaseIndex === 0) {
+        timeline.add(intro, { opacity: [1, 0], translateY: [0, -28], duration: 220, ease: 'inCubic' }, 0);
+      }
 
       timeline.pause();
       return timeline;
     };
 
-    // Three independent paused timelines. Scroll progress seeks each timeline.
     const highSchoolTimeline = buildPhaseTimeline(0);
     const collegeTimeline = buildPhaseTimeline(1);
     const careerTimeline = buildPhaseTimeline(2);
-    const phaseTimelines = [highSchoolTimeline, collegeTimeline, careerTimeline];
+    const timelines = [highSchoolTimeline, collegeTimeline, careerTimeline];
 
-    const phaseObserver = new IntersectionObserver((entries) => {
+    const triggerObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => entry.target.classList.toggle('is-in-view', entry.isIntersecting));
-    }, { rootMargin: '-15% 0px -15% 0px', threshold: 0.08 });
-    phaseSections.forEach((phase) => phaseObserver.observe(phase));
+    }, { rootMargin: '-46% 0px -46% 0px', threshold: 0 });
+    triggers.forEach((trigger) => triggerObserver.observe(trigger));
 
     let frame = 0;
     let previousStep = -1;
     let previousPhase = -1;
 
-    const updateFromScroll = () => {
+    const updateScene = () => {
       frame = 0;
-      const viewportAnchor = window.innerHeight * 0.5;
-      let closestPhase = 0;
-      let closestDistance = Number.POSITIVE_INFINITY;
+      const bounds = section.getBoundingClientRect();
+      const scrollableDistance = Math.max(1, section.offsetHeight - window.innerHeight);
+      const progress = Math.min(1, Math.max(0, -bounds.top / scrollableDistance));
+      const phaseFloat = Math.min(2.9999, progress * 3);
+      const phaseIndex = Math.floor(phaseFloat);
+      const phaseProgress = phaseFloat - phaseIndex;
+      const nextStep = Math.min(5, phaseIndex * 2 + (phaseProgress < 0.5 ? 0 : 1));
 
-      phaseSections.forEach((phase, index) => {
-        const bounds = phase.getBoundingClientRect();
-        const distance = Math.abs(bounds.top + bounds.height / 2 - viewportAnchor);
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestPhase = index;
-        }
-      });
-
-      const activeSection = phaseSections[closestPhase];
-      const bounds = activeSection.getBoundingClientRect();
-      const progress = Math.min(1, Math.max(0, (viewportAnchor - bounds.top) / bounds.height));
-      const timeline = phaseTimelines[closestPhase];
+      stage.style.setProperty('--journey-progress', `${progress * 100}%`);
+      stage.style.setProperty('--phase-progress', String(phaseProgress));
 
       if (!reduceMotion) {
-        timeline.seek(progress * timeline.duration, true);
+        timelines[phaseIndex].seek(phaseProgress * timelines[phaseIndex].duration, true);
       } else {
-        activeSection.querySelectorAll<HTMLElement>('.milestone-text').forEach((text) => {
-          text.style.opacity = '1';
-          text.style.transform = 'none';
-        });
+        intro.style.opacity = progress < 0.05 ? '1' : '0';
+        highlights.forEach((highlight, index) => { highlight.style.opacity = index === nextStep ? '1' : '0'; });
+        avatarMover.style.left = phaseProgress < 0.5 ? phaseMotion[phaseIndex].first : phaseMotion[phaseIndex].second;
       }
 
-      const localMilestone = progress < 0.5 ? 0 : 1;
-      const nextStep = phases[closestPhase].milestoneIndexes[localMilestone];
+      if (phaseIndex !== previousPhase) {
+        previousPhase = phaseIndex;
+        highlights.forEach((highlight, index) => {
+          if (Math.floor(index / 2) !== phaseIndex) highlight.style.opacity = '0';
+        });
+        if (phaseIndex > 0) intro.style.opacity = '0';
+        setActivePhase(phaseIndex);
+      }
+
       if (nextStep !== previousStep) {
         previousStep = nextStep;
-        person.dataset.stage = milestones[nextStep].stage;
+        avatar.dataset.stage = milestones[nextStep].stage;
         setActiveStep(nextStep);
       }
-      if (closestPhase !== previousPhase) {
-        previousPhase = closestPhase;
-        setActivePhase(closestPhase);
-      }
     };
 
-    const requestScrollUpdate = () => {
-      if (!frame) frame = window.requestAnimationFrame(updateFromScroll);
+    const requestSceneUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateScene);
     };
 
-    updateFromScroll();
-    window.addEventListener('scroll', requestScrollUpdate, { passive: true });
-    window.addEventListener('resize', requestScrollUpdate);
+    updateScene();
+    window.addEventListener('scroll', requestSceneUpdate, { passive: true });
+    window.addEventListener('resize', requestSceneUpdate);
 
     return () => {
-      phaseObserver.disconnect();
-      window.removeEventListener('scroll', requestScrollUpdate);
-      window.removeEventListener('resize', requestScrollUpdate);
+      triggerObserver.disconnect();
+      window.removeEventListener('scroll', requestSceneUpdate);
+      window.removeEventListener('resize', requestSceneUpdate);
       if (frame) window.cancelAnimationFrame(frame);
-      phaseTimelines.forEach((timeline) => timeline.revert());
+      timelines.forEach((timeline) => timeline.revert());
     };
   }, []);
 
   return (
-    <section ref={sectionRef} id="journey" className="roadmap-section" aria-labelledby="roadmap-title">
-      <div className="roadmap-heading">
-        <div>
-          <p className="section-kicker">03 / The journey</p>
-          <h2 id="roadmap-title">A life in<br /><span className="accent-text">motion.</span></h2>
-        </div>
-        <p className="roadmap-lede">Three chapters, one continuous story. Scroll to move through high school, college, graduation, and the start of a career.</p>
-      </div>
+    <section ref={sectionRef} id="top" className={`journey-hero journey-phase-${activePhase}`} aria-labelledby="journey-title">
+      <span id="journey" className="journey-anchor" />
+      <div ref={stageRef} className="journey-stage">
+        <div className="journey-grid" aria-hidden="true" />
+        <div className="journey-glow" aria-hidden="true" />
+        <span className="journey-ambient-line ambient-line-a" aria-hidden="true" />
+        <span className="journey-ambient-line ambient-line-b" aria-hidden="true" />
 
-      <div className="roadmap-lab">
-        <div className="roadmap-story">
-          {phases.map((phase, phaseIndex) => (
-            <section className={`journey-phase ${activePhase === phaseIndex ? 'is-active' : ''}`} data-phase={phase.id} key={phase.id} aria-labelledby={`${phase.id}-title`}>
-              <header className="journey-phase-heading">
-                <p>{phase.eyebrow}</p>
-                <h3 id={`${phase.id}-title`}>{phase.title}</h3>
-              </header>
-              {phase.milestoneIndexes.map((milestoneIndex) => {
-                const milestone = milestones[milestoneIndex];
-                return (
-                  <article className={`roadmap-step milestone-text ${activeStep === milestoneIndex ? 'is-active' : ''}`} data-step={milestoneIndex} key={milestone.number}>
-                    <span className="roadmap-step-number">{milestone.number}</span>
-                    <div>
-                      <p className="roadmap-label">{milestone.label}</p>
-                      <h3>{milestone.title}</h3>
-                      <p className="roadmap-description">{milestone.description}</p>
-                      <p className="roadmap-step-meta">{milestone.meta}</p>
-                    </div>
-                  </article>
-                );
-              })}
-            </section>
-          ))}
+        <div className="journey-topline">
+          <span>{profile.shortName}</span>
+          <span>{phases[activePhase]} · {active.number} / 06</span>
         </div>
 
-        <div className="roadmap-stage" aria-live="polite">
-          <div className="roadmap-stage-top"><span>{phases[activePhase].title} / SCROLL SYNC</span><span>0{activeStep + 1} / 06</span></div>
-          <div ref={objectRef} className="roadmap-object" aria-hidden="true">
-            <div className="roadmap-orbit roadmap-orbit-a" />
-            <div className="roadmap-orbit roadmap-orbit-b" />
-            <div className="roadmap-orbit roadmap-orbit-c" />
-            <div className="roadmap-core-glow" />
-            <div ref={personRef} className="roadmap-person" data-stage={active.stage} />
-            <div className="roadmap-person-badge"><ActiveIcon size={16} strokeWidth={1.6} /></div>
-            <span className="roadmap-particle particle-a" />
-            <span className="roadmap-particle particle-b" />
-            <span className="roadmap-particle particle-c" />
-            <span className="roadmap-particle particle-d" />
+        <div ref={introRef} className="journey-intro">
+          <p className="journey-kicker">Software engineer · A life in motion</p>
+          <h1 id="journey-title">Every system<br />has a <span>story.</span></h1>
+          <p>Scroll through the moments that shaped the person behind the code—from a curious kid to an engineer building reliable systems at scale.</p>
+        </div>
+
+        <div ref={avatarMoverRef} className="journey-avatar-mover" aria-hidden="true">
+          <div className="journey-avatar-halo" />
+          <div ref={avatarRef} className="journey-avatar" data-stage={active.stage} />
+          <div className="journey-avatar-shadow" />
+        </div>
+
+        <div className="journey-highlights" aria-live="polite">
+          {milestones.map((milestone, index) => {
+            const Icon = milestone.icon;
+            return (
+              <article className={`journey-highlight journey-highlight-${milestone.side} ${activeStep === index ? 'is-current' : ''}`} data-step={index} key={milestone.number}>
+                <div className="journey-highlight-head">
+                  <span className="journey-highlight-icon"><Icon size={17} strokeWidth={1.5} /></span>
+                  <span>{milestone.number} / {milestone.year}</span>
+                </div>
+                <p className="journey-highlight-label">{milestone.phase} · {milestone.label}</p>
+                <h2>{milestone.title}</h2>
+                <p className="journey-highlight-copy">{milestone.description}</p>
+                <p className="journey-highlight-meta">{milestone.meta}</p>
+              </article>
+            );
+          })}
+        </div>
+
+        <div className="journey-status" aria-hidden="true">
+          <span className="journey-status-icon"><ActiveIcon size={15} strokeWidth={1.5} /></span>
+          <span>{active.label}</span>
+        </div>
+
+        <div className="journey-progress" aria-hidden="true">
+          <div className="journey-progress-track"><i /></div>
+          <div className="journey-progress-dots">
+            {milestones.map((milestone, index) => <span className={index <= activeStep ? 'is-passed' : ''} key={milestone.number}>{milestone.number}</span>)}
           </div>
-          <div className="roadmap-stage-bottom"><span>{active.label}</span><span className="status-live"><i /> scroll driven</span></div>
         </div>
+
+        <div className="journey-scroll-cue" aria-hidden="true"><span>Scroll to move the story</span><i /></div>
       </div>
 
-      <a className="roadmap-scroll-cue" href="#experience"><ArrowDown size={14} /> Continue to the details</a>
+      <div className="journey-scroll-track" aria-hidden="true">
+        {milestones.map((milestone) => <div className="journey-trigger" data-step={milestone.number} key={milestone.number} />)}
+      </div>
     </section>
   );
 }

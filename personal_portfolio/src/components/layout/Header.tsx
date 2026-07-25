@@ -4,7 +4,7 @@ import { FileText, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { profile } from '@/data/portfolio';
 
-const nav = [['Home', 'top'], ['Journey', 'journey'], ['Experience', 'experience'], ['Projects', 'projects'], ['Education', 'education'], ['Skills', 'skills'], ['Contact', 'contact']];
+const nav = [['Journey', 'top'], ['Experience', 'experience'], ['Projects', 'projects'], ['Education', 'education'], ['Skills', 'skills'], ['Contact', 'contact']];
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false); const [open, setOpen] = useState(false); const [active, setActive] = useState('top');
