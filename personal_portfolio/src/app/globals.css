@@ -64,7 +64,7 @@ h1 { max-width: 790px; font-size: clamp(2.8rem, 6.2vw, 6.15rem); line-height: .9
 .journey-intro h1 span { color: #b7a57a; }
 .journey-intro > p:last-child { max-width: 510px; margin-top: 26px; color: var(--muted); font-size: 15px; line-height: 1.7; }
 .journey-avatar-mover { position: absolute; z-index: 5; bottom: clamp(58px, 6vh, 82px); left: 68%; width: min(14vw, 24vh, 220px); aspect-ratio: 1 / 3; transform: translateX(-50%); will-change: left; }
-.journey-avatar { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; background-image: url('/roadmap/life-journey-sprite-6.png'); background-repeat: no-repeat; background-size: 600% 100%; background-position-y: center; filter: drop-shadow(0 24px 20px rgba(0,0,0,.32)); image-rendering: auto; }
+.journey-avatar { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; background-image: url('/roadmap/life-journey-sprite-7.png'); background-repeat: no-repeat; background-size: 600% 100%; background-position-y: center; filter: drop-shadow(0 24px 20px rgba(0,0,0,.32)); image-rendering: auto; }
 .journey-avatar[data-stage="kid"] { background-position-x: 0%; }
 .journey-avatar[data-stage="student"] { background-position-x: 20%; }
 .journey-avatar[data-stage="college"] { background-position-x: 40%; }
@@ -148,7 +148,7 @@ h1 { max-width: 790px; font-size: clamp(2.8rem, 6.2vw, 6.15rem); line-height: .9
 .roadmap-stage-top, .roadmap-stage-bottom { display: flex; justify-content: space-between; color: #61747e; font: 9px monospace; letter-spacing: .08em; text-transform: uppercase; }
 .roadmap-stage-bottom { color: var(--accent); }
 .roadmap-object { position: relative; display: grid; place-items: center; width: min(42vw, 460px); aspect-ratio: 1; margin: auto; transform-origin: center; }
-.roadmap-person { position: absolute; top: 3%; left: 0; z-index: 4; width: 47%; height: 94%; background-image: url('/roadmap/life-journey-sprite-6.png'); background-repeat: no-repeat; background-size: 600% 100%; background-position-y: center; transform-origin: center bottom; filter: drop-shadow(0 17px 14px rgba(0,0,0,.22)); transition: background-position .65s ease; }
+.roadmap-person { position: absolute; top: 3%; left: 0; z-index: 4; width: 47%; height: 94%; background-image: url('/roadmap/life-journey-sprite-7.png'); background-repeat: no-repeat; background-size: 600% 100%; background-position-y: center; transform-origin: center bottom; filter: drop-shadow(0 17px 14px rgba(0,0,0,.22)); transition: background-position .65s ease; }
 .roadmap-person[data-stage="kid"] { background-position-x: 0%; }
 .roadmap-person[data-stage="student"] { background-position-x: 20%; }
 .roadmap-person[data-stage="college"] { background-position-x: 40%; }
