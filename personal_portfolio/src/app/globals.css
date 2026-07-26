@@ -71,7 +71,7 @@ h1 { max-width: 790px; font-size: clamp(2.8rem, 6.2vw, 6.15rem); line-height: .9
 .journey-avatar-frame[data-stage="student"] { background-position-x: 20%; }
 .journey-avatar-frame[data-stage="college"] { background-position-x: 40%; }
 .journey-avatar-frame[data-stage="graduation"] { background-position-x: 60%; }
-.journey-avatar-frame[data-stage="engineer"] { background-position-x: 80%; }
+.journey-avatar-frame[data-stage="engineer"] { background-image: url('/roadmap/engineer-avatar.png'); background-size: 100% 100%; background-position: center; }
 .journey-avatar-frame[data-stage="future"] { background-image: url('/roadmap/present-day-avatar.png'); background-size: 100% 100%; background-position: center; }
 .journey-avatar { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; background-image: url('/roadmap/life-journey-sprite-7.png'); background-repeat: no-repeat; background-size: 600% 100%; background-position-y: center; filter: drop-shadow(0 24px 20px rgba(0,0,0,.32)); image-rendering: auto; }
 .journey-avatar[data-stage="kid"] { background-position-x: 0%; }
