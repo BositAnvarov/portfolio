@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+# Abdulbosit Anvarov — Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Premium, accessible portfolio built with Next.js App Router, TypeScript, Tailwind CSS, Motion, and Lucide React.
 
-## Available Scripts
+## Local development
 
-In the project directory, you can run:
+```bash
+npm install
+npm run dev
+npm run build
+npm run lint
+```
 
-### `npm start`
+## Customization
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- All profile, experience, project, education, and skill content lives in `src/data/portfolio.ts`.
+- Add a project by adding a typed object to the `projects` array; the filter and modal pick it up automatically.
+- Change accent styling in the CSS variables at the top of `src/app/globals.css`.
+- Add the actual resume PDF at `public/resume/Abdulbosit-Anvarov-Resume.pdf`.
+- Replace the social/email placeholders in `src/data/portfolio.ts`.
+- Replace project visual placeholders in `ProjectsSection.tsx` when project imagery is available. The current visuals are CSS-only, local, and intentionally lightweight.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Architecture notes
 
-### `npm test`
+Static page composition and content remain server-rendered. Client components are limited to the sticky navigation, Motion viewport reveals, magnetic CTA, impact reveal, and filterable project grid/modal. The modal handles Escape-to-close, click-outside close, focus on open, and scroll locking. Reduced motion is respected in both CSS and the Motion interactions.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Deploying on Vercel
 
-### `npm run build`
+Import this repository into [Vercel](https://vercel.com/) and deploy with the default Next.js settings. Vercel will run the production build automatically. A custom domain can be configured in the project settings.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The resume directory contains a placeholder `.gitkeep`; replace it with the PDF before publishing job applications.
