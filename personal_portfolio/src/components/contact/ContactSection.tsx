@@ -1,0 +1,5 @@
+import { ArrowUpRight, Code2, Mail, Users } from 'lucide-react';
+import { profile } from '@/data/portfolio';
+import { MagneticButton } from '@/components/hero/MagneticButton';
+
+export function ContactSection() { return <section id="contact" className="contact-section"><div className="contact-glow" aria-hidden="true" /><p className="section-kicker">06 / Contact</p><h2>Let’s build the next generation of intelligent systems.</h2><p className="contact-copy">I’m interested in software and AI/ML engineering opportunities where machine learning meets backend platforms, cloud infrastructure, distributed systems, and observability—turning intelligent ideas into dependable products.</p><div className="contact-actions"><MagneticButton href={`mailto:${profile.email}`}>Email Me</MagneticButton><a className="text-link" href={profile.linkedin}><Users size={17} /> LinkedIn <ArrowUpRight size={15} /></a><a className="text-link" href={profile.github}><Code2 size={17} /> GitHub <ArrowUpRight size={15} /></a></div></section>; }

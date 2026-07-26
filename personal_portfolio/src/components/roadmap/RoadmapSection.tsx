@@ -1,6 +1,6 @@
 'use client';
 
-import { BriefcaseBusiness, Code2, FileText, GraduationCap, Mail, Sparkles } from 'lucide-react';
+import { BrainCircuit, Code2, FileText, FlaskConical, GraduationCap, Sparkles } from 'lucide-react';
 import { createTimeline } from 'animejs';
 import { useEffect, useRef, useState } from 'react';
 import { profile } from '@/data/portfolio';
@@ -8,10 +8,10 @@ import { profile } from '@/data/portfolio';
 const milestones = [
   { number: '01', phase: 'High School', year: 'The beginning', label: 'A curious mind', title: 'Every story starts somewhere.', description: 'A kid who asked too many questions discovered that ideas could become things—and that learning could be its own kind of adventure.', icon: FileText, meta: 'Curiosity became the starting point', stage: 'kid', side: 'left' },
   { number: '02', phase: 'High School', year: 'High school years', label: 'The first signal', title: 'Technology became a language.', description: 'Classes, experiments, and early projects revealed that a computer could turn an idea into something useful for other people.', icon: Sparkles, meta: 'The first real pull toward software', stage: 'student', side: 'right' },
-  { number: '03', phase: 'College', year: 'University', label: 'Learning the craft', title: 'Curiosity met discipline.', description: 'Hard problems, long nights, new people, and the freedom to fail forward built the foundations of an engineer.', icon: BriefcaseBusiness, meta: 'Computer science · systems · teamwork', stage: 'college', side: 'left' },
+  { number: '03', phase: 'College', year: 'University', label: 'A new frontier', title: 'Software could learn, not just execute.', description: 'Computer science built the foundation; machine learning and computer vision research revealed how software could learn from data and help solve meaningful problems.', icon: FlaskConical, meta: 'Machine learning · computer vision · research', stage: 'college', side: 'left' },
   { number: '04', phase: 'College', year: '2023', label: 'A defining checkpoint', title: 'Graduation opened the next door.', description: 'Years of study became a Computer Science degree—and an important reminder that progress is made one difficult chapter at a time.', icon: GraduationCap, meta: 'B.S. Computer Science · 2023', stage: 'graduation', side: 'right' },
   { number: '05', phase: 'Career', year: 'The first roles', label: 'The work became real', title: 'Knowledge turned into responsibility.', description: 'Internships and production systems introduced real users, real teammates, real failures, and software that had to hold up.', icon: Code2, meta: 'Healthcare · enterprise · production', stage: 'engineer', side: 'left' },
-  { number: '06', phase: 'Career', year: 'Today', label: 'Still becoming', title: 'Building systems that matter.', description: 'Now the work spans cloud platforms, distributed systems, and observability—while the curiosity that started everything keeps growing.', icon: Mail, meta: 'Software Engineer · the story continues', stage: 'future', side: 'right' },
+  { number: '06', phase: 'Career', year: 'What comes next', label: 'The next frontier', title: 'The next chapter is AI/ML engineering.', description: 'Backend, cloud, and distributed systems taught me how reliable software scales. Now I’m bringing that foundation to the next generation of intelligent, responsible products.', icon: BrainCircuit, meta: 'Reliable systems · applied AI · continuous learning', stage: 'future', side: 'right' },
 ];
 
 const phases = ['High School', 'College', 'Career'];
@@ -150,9 +150,9 @@ export function RoadmapSection() {
         </div>
 
         <div ref={introRef} className="journey-intro">
-          <p className="journey-kicker">Software engineer · A life in motion</p>
+          <p className="journey-kicker">Software engineer · Building toward AI/ML</p>
           <h1 id="journey-title">Every system<br />has a <span>story.</span></h1>
-          <p>Scroll through the moments that shaped the person behind the code—from a curious kid to an engineer building reliable systems at scale.</p>
+          <p>Scroll through the moments that shaped the person behind the code—from a curious kid to a software engineer building reliable systems and working toward the next generation of AI.</p>
         </div>
 
         <div ref={avatarMoverRef} className="journey-avatar-mover" aria-hidden="true">
