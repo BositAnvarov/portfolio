@@ -16,17 +16,12 @@ const milestones = [
 
 const phases = ['High School', 'College', 'Career'];
 
-const phaseMotion = [
-  { entry: '68%', first: '68%', second: '24%' },
-  { entry: '24%', first: '65%', second: '22%' },
-  { entry: '22%', first: '62%', second: '38%' },
-];
+const avatarPositions = ['68%', '24%', '65%', '22%', '62%', '38%'];
 
 export function RoadmapSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const avatarMoverRef = useRef<HTMLDivElement>(null);
-  const avatarRef = useRef<HTMLDivElement>(null);
   const introRef = useRef<HTMLDivElement>(null);
   const [activeStep, setActiveStep] = useState(0);
   const [activePhase, setActivePhase] = useState(0);
@@ -37,102 +32,106 @@ export function RoadmapSection() {
     const section = sectionRef.current;
     const stage = stageRef.current;
     const avatarMover = avatarMoverRef.current;
-    const avatar = avatarRef.current;
     const intro = introRef.current;
-    if (!section || !stage || !avatarMover || !avatar || !intro) return;
+    if (!section || !stage || !avatarMover || !intro) return;
 
     const highlights = Array.from(section.querySelectorAll<HTMLElement>('.journey-highlight'));
-    const triggers = Array.from(section.querySelectorAll<HTMLElement>('.journey-trigger'));
+    const avatarFrames = Array.from(avatarMover.querySelectorAll<HTMLElement>('.journey-avatar-frame'));
     const ambientLines = Array.from(stage.querySelectorAll<HTMLElement>('.journey-ambient-line'));
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const slotDuration = 1000;
+    const totalDuration = milestones.length * slotDuration;
+    const masterTimeline = createTimeline({ autoplay: false });
 
-    const buildPhaseTimeline = (phaseIndex: number) => {
-      const firstHighlight = highlights[phaseIndex * 2];
-      const secondHighlight = highlights[phaseIndex * 2 + 1];
-      const motion = phaseMotion[phaseIndex];
-      const timeline = createTimeline({ autoplay: false });
+    masterTimeline
+      .add(intro, { opacity: [1, 0], translateY: [0, -28], duration: 340, ease: 'inOutCubic' }, 0)
+      .add(ambientLines, { rotate: [-4, 8, -6, 10, 0], opacity: [0.22, 0.5, 0.3], duration: totalDuration, ease: 'inOutSine' }, 0);
 
-      timeline
-        .add(avatarMover, { left: [motion.entry, motion.first], duration: 220, ease: 'outCubic' }, 0)
-        .add(avatarMover, { left: motion.second, duration: 780, ease: 'inOutCubic' }, 220)
-        .add(ambientLines, { rotate: [0, phaseIndex % 2 ? -8 : 8], opacity: [0.22, 0.52], duration: 1000, ease: 'inOutSine' }, 0)
-        .add(firstHighlight, { opacity: [0, 1], translateY: [34, 0], duration: 260, ease: 'outCubic' }, 80)
-        .add(firstHighlight, { opacity: [1, 0], translateY: [0, -22], duration: 180, ease: 'inCubic' }, 400)
-        .add(secondHighlight, { opacity: [0, 1], translateY: [34, 0], duration: 300, ease: 'outCubic' }, 520);
+    milestones.forEach((_, index) => {
+      const slotStart = index * slotDuration;
+      const highlight = highlights[index];
 
-      if (phaseIndex === 0) {
-        timeline.add(intro, { opacity: [1, 0], translateY: [0, -28], duration: 220, ease: 'inCubic' }, 0);
+      masterTimeline.add(highlight, {
+        opacity: [0, 1],
+        translateY: [28, 0],
+        duration: 280,
+        ease: 'outCubic',
+      }, slotStart + (index === 0 ? 180 : 140));
+
+      if (index < milestones.length - 1) {
+        masterTimeline
+          .add(highlight, { opacity: [1, 0], translateY: [0, -18], duration: 200, ease: 'inCubic' }, slotStart + 720)
+          .add(avatarMover, { left: [avatarPositions[index], avatarPositions[index + 1]], duration: 280, ease: 'inOutCubic' }, slotStart + 700)
+          .add(avatarFrames[index], { opacity: [1, 0], duration: 300, ease: 'inOutQuad' }, slotStart + 850)
+          .add(avatarFrames[index + 1], { opacity: [0, 1], duration: 300, ease: 'inOutQuad' }, slotStart + 850);
       }
+    });
 
-      timeline.pause();
-      return timeline;
-    };
-
-    const highSchoolTimeline = buildPhaseTimeline(0);
-    const collegeTimeline = buildPhaseTimeline(1);
-    const careerTimeline = buildPhaseTimeline(2);
-    const timelines = [highSchoolTimeline, collegeTimeline, careerTimeline];
-
-    const triggerObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => entry.target.classList.toggle('is-in-view', entry.isIntersecting));
-    }, { rootMargin: '-46% 0px -46% 0px', threshold: 0 });
-    triggers.forEach((trigger) => triggerObserver.observe(trigger));
+    // Keeps the final milestone visible through the end of the scroll track.
+    masterTimeline.add(stage, { opacity: [1, 1], duration: totalDuration, ease: 'linear' }, 0);
+    masterTimeline.pause();
 
     let frame = 0;
+    let targetProgress = 0;
+    let renderedProgress = 0;
     let previousStep = -1;
-    let previousPhase = -1;
 
-    const updateScene = () => {
-      frame = 0;
+    const readScrollProgress = () => {
       const bounds = section.getBoundingClientRect();
       const scrollableDistance = Math.max(1, section.offsetHeight - window.innerHeight);
-      const progress = Math.min(1, Math.max(0, -bounds.top / scrollableDistance));
-      const phaseFloat = Math.min(2.9999, progress * 3);
-      const phaseIndex = Math.floor(phaseFloat);
-      const phaseProgress = phaseFloat - phaseIndex;
-      const nextStep = Math.min(5, phaseIndex * 2 + (phaseProgress < 0.5 ? 0 : 1));
+      return Math.min(1, Math.max(0, -bounds.top / scrollableDistance));
+    };
 
-      stage.style.setProperty('--journey-progress', `${progress * 100}%`);
-      stage.style.setProperty('--phase-progress', String(phaseProgress));
-
-      if (!reduceMotion) {
-        timelines[phaseIndex].seek(phaseProgress * timelines[phaseIndex].duration, true);
-      } else {
-        intro.style.opacity = progress < 0.05 ? '1' : '0';
-        highlights.forEach((highlight, index) => { highlight.style.opacity = index === nextStep ? '1' : '0'; });
-        avatarMover.style.left = phaseProgress < 0.5 ? phaseMotion[phaseIndex].first : phaseMotion[phaseIndex].second;
-      }
-
-      if (phaseIndex !== previousPhase) {
-        previousPhase = phaseIndex;
-        highlights.forEach((highlight, index) => {
-          if (Math.floor(index / 2) !== phaseIndex) highlight.style.opacity = '0';
-        });
-        if (phaseIndex > 0) intro.style.opacity = '0';
-        setActivePhase(phaseIndex);
-      }
-
+    const updateDiscreteState = (progress: number) => {
+      const nextStep = Math.min(milestones.length - 1, Math.floor(progress * milestones.length));
       if (nextStep !== previousStep) {
         previousStep = nextStep;
-        avatar.dataset.stage = milestones[nextStep].stage;
         setActiveStep(nextStep);
+        setActivePhase(Math.floor(nextStep / 2));
+      }
+    };
+
+    const renderScene = () => {
+      frame = 0;
+      const distance = targetProgress - renderedProgress;
+      renderedProgress = reduceMotion || Math.abs(distance) < 0.0001
+        ? targetProgress
+        : renderedProgress + distance * 0.14;
+
+      stage.style.setProperty('--journey-progress', `${renderedProgress * 100}%`);
+
+      if (!reduceMotion) {
+        masterTimeline.seek(renderedProgress * totalDuration, true);
+      } else {
+        const nextStep = Math.min(milestones.length - 1, Math.floor(renderedProgress * milestones.length));
+        intro.style.opacity = renderedProgress < 0.025 ? '1' : '0';
+        highlights.forEach((highlight, index) => { highlight.style.opacity = index === nextStep ? '1' : '0'; });
+        avatarFrames.forEach((avatarFrame, index) => { avatarFrame.style.opacity = index === nextStep ? '1' : '0'; });
+        avatarMover.style.left = avatarPositions[nextStep];
+      }
+
+      updateDiscreteState(renderedProgress);
+      if (Math.abs(targetProgress - renderedProgress) >= 0.0001) {
+        frame = window.requestAnimationFrame(renderScene);
       }
     };
 
     const requestSceneUpdate = () => {
-      if (!frame) frame = window.requestAnimationFrame(updateScene);
+      targetProgress = readScrollProgress();
+      if (!frame) frame = window.requestAnimationFrame(renderScene);
     };
 
-    updateScene();
+    targetProgress = readScrollProgress();
+    renderedProgress = targetProgress;
+    renderScene();
     window.addEventListener('scroll', requestSceneUpdate, { passive: true });
     window.addEventListener('resize', requestSceneUpdate);
 
     return () => {
-      triggerObserver.disconnect();
       window.removeEventListener('scroll', requestSceneUpdate);
       window.removeEventListener('resize', requestSceneUpdate);
       if (frame) window.cancelAnimationFrame(frame);
-      timelines.forEach((timeline) => timeline.revert());
+      masterTimeline.revert();
     };
   }, []);
 
@@ -158,7 +157,9 @@ export function RoadmapSection() {
 
         <div ref={avatarMoverRef} className="journey-avatar-mover" aria-hidden="true">
           <div className="journey-avatar-halo" />
-          <div ref={avatarRef} className="journey-avatar" data-stage={active.stage} />
+          <div className="journey-avatar-stack">
+            {milestones.map((milestone, index) => <div className="journey-avatar-frame" data-stage={milestone.stage} data-avatar-index={index} key={milestone.stage} />)}
+          </div>
           <div className="journey-avatar-shadow" />
         </div>
 
@@ -166,7 +167,7 @@ export function RoadmapSection() {
           {milestones.map((milestone, index) => {
             const Icon = milestone.icon;
             return (
-              <article className={`journey-highlight journey-highlight-${milestone.side} ${activeStep === index ? 'is-current' : ''}`} data-step={index} key={milestone.number}>
+              <article className={`journey-highlight journey-highlight-${milestone.side} ${activeStep === index ? 'is-current' : ''}`} data-step={index} aria-hidden={activeStep !== index} key={milestone.number}>
                 <div className="journey-highlight-head">
                   <span className="journey-highlight-icon"><Icon size={17} strokeWidth={1.5} /></span>
                   <span>{milestone.number} / {milestone.year}</span>
