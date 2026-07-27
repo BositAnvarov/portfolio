@@ -14,6 +14,10 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
+defaults:
+  run:
+    working-directory: personal_portfolio
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -35,7 +39,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: out
+          path: personal_portfolio/out
 
   deploy:
     needs: build
